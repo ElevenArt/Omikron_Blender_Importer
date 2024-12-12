@@ -183,14 +183,14 @@ def readLight(file_object):
     light["name"] = readString(file_object)
     light["float 1,2"] = [readFloat(file_object), readFloat(file_object)]
     light["intensity"] = readFloat(file_object)
-    #light["position"] = readVector3(file_object) * scalefactor # [readFloat(file_object), readFloat(file_object), readFloat(file_object)]
+    light["position"] = readVector3(file_object) * scalefactor # [readFloat(file_object), readFloat(file_object), readFloat(file_object)]
     light["angles"] = [readFloat(file_object), readFloat(file_object)]
     light["color"]= [readUByte(file_object)/255,readUByte(file_object)/255,readUByte(file_object)/255,readUByte(file_object)/255]
     for i in range(6):
         light["position"+str(i)] = readVector3(file_object) * scalefactor
         light["unknown"+str(i)] = readUBytes(file_object, 20)
     light["unknown"] = readUBytes(file_object, 64)
-    #light["unknown"] = readUBytes(file_object, 192+64)# [192 octets] Light Points (6 x (12 bytes for pos[x,y,z] + 20 unkown bytes))
+    light["unknown"] = readUBytes(file_object, 192+64)# [192 octets] Light Points (6 x (12 bytes for pos[x,y,z] + 20 unkown bytes))
     return light
 
 def loadRawVertices(file_object, header, meshDescriptors):
