@@ -697,21 +697,21 @@ def ImportModels(file_object, objectName):
         modifier = object.modifiers.new("Armature", 'ARMATURE')
         modifier.object = armatureObject
         
-    # #lights
-    # for lightDescriptor in lights:
-    #     lightObject = bpy.data.objects.new( lightDescriptor["name"], None )
-    #     scene.collection.objects.link(lightObject)
-    #     lightObject.empty_display_size = 2
-    #     lightObject.empty_display_type = 'PLAIN_AXES'
-    #     lightObject.parent = object
-    #     lightObject.location = lightDescriptor["position0"] - object.location
-    #     for i in range(1,6):
-    #         sublightObject = bpy.data.objects.new( lightDescriptor["name"]+"_"+str(i), None )
-    #         scene.collection.objects.link(sublightObject)
-    #         sublightObject.empty_display_size = 1
-    #         sublightObject.empty_display_type = 'PLAIN_AXES'
-    #         sublightObject.parent = lightObject
-    #         sublightObject.location = lightDescriptor["position"+str(i)] - lightObject.location - object.location 
+    #lights
+    for lightDescriptor in lights:
+        lightObject = bpy.data.objects.new( lightDescriptor["name"], None )
+        scene.collection.objects.link(lightObject)
+        lightObject.empty_display_size = 2
+        lightObject.empty_display_type = 'PLAIN_AXES'
+        lightObject.parent = object
+        lightObject.location = lightDescriptor["position0"] - object.location
+        for i in range(1,6):
+            sublightObject = bpy.data.objects.new( lightDescriptor["name"]+"_"+str(i), None )
+            scene.collection.objects.link(sublightObject)
+            sublightObject.empty_display_size = 1
+            sublightObject.empty_display_type = 'PLAIN_AXES'
+            sublightObject.parent = lightObject
+            sublightObject.location = lightDescriptor["position"+str(i)] - lightObject.location - object.location 
 
     return mesh, materials, shaders;
 
